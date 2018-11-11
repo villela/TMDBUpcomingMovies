@@ -2,6 +2,8 @@ package com.matheusvillela.tmdbupcomingmovies
 
 import android.app.Application
 import com.matheusvillela.tmdbupcomingmovies.di.AppModule
+import com.matheusvillela.tmdbupcomingmovies.repository.MovieRepository
+import com.matheusvillela.tmdbupcomingmovies.repository.MovieRepositoryWebStrategy
 import com.matheusvillela.tmdbupcomingmovies.shared.Api
 import junit.framework.Assert.assertNotNull
 import okhttp3.OkHttpClient
@@ -44,5 +46,17 @@ class ToothpickTest {
     fun testGetOKHttpInstance() {
         val client = appScope.getInstance(OkHttpClient::class.java)
         assertNotNull(client)
+    }
+
+    @Test
+    fun testGetMovieRepositoryWebStrategy() {
+        val strategy = appScope.getInstance(MovieRepositoryWebStrategy::class.java)
+        assertNotNull(strategy)
+    }
+
+    @Test
+    fun testGetMovieRepository() {
+        val repository = appScope.getInstance(MovieRepository::class.java)
+        assertNotNull(repository)
     }
 }
