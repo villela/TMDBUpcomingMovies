@@ -1,8 +1,10 @@
 package com.matheusvillela.tmdbupcomingmovies
 
 import android.app.Application
+import com.matheusvillela.tmdbupcomingmovies.dao.MovieDao
 import com.matheusvillela.tmdbupcomingmovies.di.AppModule
 import com.matheusvillela.tmdbupcomingmovies.repository.MovieRepository
+import com.matheusvillela.tmdbupcomingmovies.repository.MovieRepositorySqliteStrategy
 import com.matheusvillela.tmdbupcomingmovies.repository.MovieRepositoryWebStrategy
 import com.matheusvillela.tmdbupcomingmovies.shared.Api
 import junit.framework.Assert.assertNotNull
@@ -55,8 +57,27 @@ class ToothpickTest {
     }
 
     @Test
+    fun testGetAppDatabase() {
+        val db = appScope.getInstance(AppDatabase::class.java)
+        assertNotNull(db)
+    }
+
+    @Test
+    fun testGetMovieDao() {
+        val dao = appScope.getInstance(MovieDao::class.java)
+        assertNotNull(dao)
+    }
+
+    @Test
+    fun testGetMovieSqliteStrategy() {
+        val strategy = appScope.getInstance(MovieRepositorySqliteStrategy::class.java)
+        assertNotNull(strategy)
+    }
+
+    @Test
     fun testGetMovieRepository() {
         val repository = appScope.getInstance(MovieRepository::class.java)
         assertNotNull(repository)
     }
+
 }

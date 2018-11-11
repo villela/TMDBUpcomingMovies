@@ -1,13 +1,11 @@
-package com.matheusvillela.tmdbupcomingmovies.di
+package com.matheusvillela.tmdbupcomingmovies.di.provider
 
 import android.app.Application
 import com.matheusvillela.tmdbupcomingmovies.BuildConfig
 import com.matheusvillela.tmdbupcomingmovies.util.SleepInterceptor
 import com.matheusvillela.tmdbupcomingmovies.util.TmdbKeyInterceptor
-import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import java.io.File
 import javax.inject.Inject
 import javax.inject.Provider
 
@@ -23,9 +21,9 @@ class OkHttpProvider @Inject constructor(
         val builder = OkHttpClient.Builder()
                 .addInterceptor(keyInterceptor)
                 .addInterceptor(loggingInterceptor)
-                .cache(Cache(File(application.cacheDir, "http"), 1 * 1024 * 1024))
+                //.cache(Cache(File(application.cacheDir, "http"), 1 * 1024 * 1024))
         if (BuildConfig.DEBUG) {
-            builder.addInterceptor(sleepInterceptor)
+            //builder.addInterceptor(sleepInterceptor)
         }
         return builder.build()
     }

@@ -1,4 +1,4 @@
-package com.matheusvillela.tmdbupcomingmovies.di
+package com.matheusvillela.tmdbupcomingmovies.di.provider
 
 import okhttp3.logging.HttpLoggingInterceptor
 import javax.inject.Inject

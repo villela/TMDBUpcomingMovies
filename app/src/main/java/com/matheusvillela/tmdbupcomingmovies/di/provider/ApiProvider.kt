@@ -1,4 +1,4 @@
-package com.matheusvillela.tmdbupcomingmovies.di
+package com.matheusvillela.tmdbupcomingmovies.di.provider
 
 import com.matheusvillela.tmdbupcomingmovies.shared.Api
 import okhttp3.OkHttpClient
