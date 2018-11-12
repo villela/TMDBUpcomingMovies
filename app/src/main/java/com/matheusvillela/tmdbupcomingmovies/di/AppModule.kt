@@ -2,6 +2,7 @@ package com.matheusvillela.tmdbupcomingmovies.di
 
 import android.app.Application
 import com.matheusvillela.tmdbupcomingmovies.AppDatabase
+import com.matheusvillela.tmdbupcomingmovies.dao.GenreDao
 import com.matheusvillela.tmdbupcomingmovies.dao.MovieDao
 import com.matheusvillela.tmdbupcomingmovies.di.provider.*
 import com.matheusvillela.tmdbupcomingmovies.shared.Api
@@ -22,5 +23,6 @@ class AppModule(application: Application) : Module() {
         this.bind(Api::class.java).toProvider(ApiProvider::class.java).singletonInScope()
         this.bind(AppDatabase::class.java).toProvider(DatabaseProvider::class.java).singletonInScope()
         this.bind(MovieDao::class.java).toProvider(MovieDaoProvider::class.java).singletonInScope()
+        this.bind(GenreDao::class.java).toProvider(GenreDaoProvider::class.java).singletonInScope()
     }
 }

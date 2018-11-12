@@ -2,7 +2,7 @@ package com.matheusvillela.tmdbupcomingmovies
 
 import android.app.Application
 import com.matheusvillela.tmdbupcomingmovies.di.AppModule
-import com.matheusvillela.tmdbupcomingmovies.repository.MovieRepositoryWebStrategy
+import com.matheusvillela.tmdbupcomingmovies.repository.movie.MovieRepositoryWebStrategy
 import junit.framework.Assert.assertEquals
 import org.junit.After
 import org.junit.Assert.assertNotEquals

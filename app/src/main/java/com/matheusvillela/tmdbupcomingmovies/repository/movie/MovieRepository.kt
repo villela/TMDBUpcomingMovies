@@ -1,4 +1,4 @@
-package com.matheusvillela.tmdbupcomingmovies.repository
+package com.matheusvillela.tmdbupcomingmovies.repository.movie
 
 import com.matheusvillela.tmdbupcomingmovies.dao.MovieDao
 import com.matheusvillela.tmdbupcomingmovies.model.domain.Movie
