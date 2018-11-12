@@ -16,10 +16,10 @@ class MovieRepository @Inject constructor(
             .flatMap { it ->
                 if (it.isEmpty()) {
                     webStrategy.getMovies(page)
+                        .doAfterSuccess { movieDao.insertAll(it) }
                 } else {
                     Single.just(it)
                 }
             }
-            .doAfterSuccess { movieDao.insertAll(it) }
     }
 }
