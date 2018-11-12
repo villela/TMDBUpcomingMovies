@@ -1,20 +1,24 @@
 package com.matheusvillela.tmdbupcomingmovies
 
+import android.app.Application
 import androidx.room.Room
-import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
+import com.matheusvillela.tmdbupcomingmovies.dao.MovieDao
+import com.matheusvillela.tmdbupcomingmovies.di.AppModule
 import com.matheusvillela.tmdbupcomingmovies.model.domain.Movie
 import junit.framework.Assert.assertNotNull
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import toothpick.Scope
 import toothpick.Toothpick
 
-@RunWith(AndroidJUnit4::class)
+@RunWith(AndroidJUnit4ClassRunner::class)
 class MovieDaoTest {
 
-    private lateinit var db: AppDatabase
+    private lateinit var appScope: Scope
 
     @After
     fun tearDown() {
@@ -23,12 +27,18 @@ class MovieDaoTest {
 
     @Before
     fun setup() {
-        db = Room.inMemoryDatabaseBuilder(InstrumentationRegistry.getInstrumentation().context, AppDatabase::class.java).allowMainThreadQueries().build()
+        appScope = Toothpick.openScope(this)
+        val app: Application =InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as Application
+        val appModule = AppModule(app)
+        appModule.bind(AppDatabase::class.java).toInstance(
+            Room.inMemoryDatabaseBuilder(app, AppDatabase::class.java).allowMainThreadQueries().build()
+        )
+        appScope.installModules(appModule)
     }
 
     @Test
     fun testDaoInsert() {
-        val dao = db.movieDao()
+        val dao = appScope.getInstance(MovieDao::class.java)
         val movie = Movie(5, "title", null, null, "Overview",
             listOf(), "2018/08/08", 1)
         dao.insertAll(listOf(movie))
