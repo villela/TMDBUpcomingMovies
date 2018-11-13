@@ -1,6 +1,7 @@
 package com.matheusvillela.tmdbupcomingmovies
 
 import android.app.Application
+import com.matheusvillela.tmdbupcomingmovies.dao.ImageConfigurationDao
 import com.matheusvillela.tmdbupcomingmovies.dao.MovieDao
 import com.matheusvillela.tmdbupcomingmovies.di.AppModule
 import com.matheusvillela.tmdbupcomingmovies.repository.movie.MovieRepository
@@ -65,6 +66,12 @@ class ToothpickTest {
     @Test
     fun testGetMovieDao() {
         val dao = appScope.getInstance(MovieDao::class.java)
+        assertNotNull(dao)
+    }
+
+    @Test
+    fun testGetConfigurationDao() {
+        val dao = appScope.getInstance(ImageConfigurationDao::class.java)
         assertNotNull(dao)
     }
 
