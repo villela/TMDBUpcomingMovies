@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TMDB Upcoming Movies</string>
+    <string name="release_date">Release date: %1s</string>
+    <string name="error_loading">Error loading movies</string>
+</resources>
